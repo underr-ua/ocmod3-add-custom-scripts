@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<!--
+This file is part of "Add Tags" project and subject to the terms
+and conditions defined in file "LICENSE.txt", which is part of this source
+code package and also available by the next link: https://git.io/JqJxU.
+-->
+
+<modification>
+    <name>[underr] Document addTag</name>
+    <code>document-addtag</code>
+    <version>2.0.0</version>
+    <author>Andrii Burkatskyi aka underr</author>
+    <link>https://git.io/JqJxJ</link>
+	<description>Addon to add custom tags in page header</description>
+
+    <file path="system/library/document.php" error="log">
+        <operation error="log">
+            <search>
+				<![CDATA[private $scripts = array();]]>
+			</search>
+            <add position="after"><![CDATA[
+	/// <<< Document addTag
+	private $tags = array();
+
+	/**
+	 * Store html tag content and attributes
+	 *
+	 * Example of $data:
+	 * array(
+	 *     'name'    => 'a',
+	 *     'content' => 'Click!',
+	 *     'attrs'   => array('href' => 'https://example.com')
+	 * )
+	 *
+	 * @param array $data - tag data array
+	 * @param string $id - unique string to identify entry
+	 * @param string $group - e.g, 'header' or 'footer'
+	 */
+	public function addTag($data, $id = '', $group = 'header') {
+		if (isset($data) && is_array($data) && isset($data['tag'])) {
+			$tag = array(
+				'name'     => $data['tag'],
+				'content' => isset($data['content']) ? $data['content'] : '',
+				'attrs'   => isset($data['attrs']) && is_array($data['attrs']) ? $data['attrs'] : array()
+			);
+
+			$this->tags[$group][] = array(
+				'tag'     => $tag,
+				'id'      => $id,
+			);
+		}
+	}
+
+	/**
+	 * @param    string    $group
+	 *
+	 * @return   array
+	 */
+	public function getTags($group = 'header') {
+		if (isset($this->tags[$group])) {
+			return $this->tags[$group];
+		} else {
+			return array();
+		}
+	}
+	/// Document addTag >>>]]>
+			</add>
+        </operation>
+    </file>
+
+</modification>
