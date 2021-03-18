@@ -9,7 +9,7 @@ code package and also available by the next link: https://git.io/JqJxU.
 <modification>
     <name>[underr] Document addTag</name>
     <code>document-addtag</code>
-    <version>2.0.0</version>
+    <version>2.1.0</version>
     <author>Andrii Burkatskyi aka underr</author>
     <link>https://git.io/JqJxJ</link>
 	<description>Addon to add custom tags in page header</description>
@@ -28,9 +28,10 @@ code package and also available by the next link: https://git.io/JqJxU.
 	 *
 	 * Example of $data:
 	 * array(
-	 *     'name'    => 'a',
-	 *     'content' => 'Click!',
-	 *     'attrs'   => array('href' => 'https://example.com')
+	 *     'tag'     => 'a',  // tag name
+	 *     'content' => 'Click!', // content
+	 *     'attrs'   => array('href' => 'https://example.com'), // array of tag attributes
+	 *     'close'   => true // close the tag <a></a> or not <link/>
 	 * )
 	 *
 	 * @param array $data - tag data array
@@ -40,9 +41,10 @@ code package and also available by the next link: https://git.io/JqJxU.
 	public function addTag($data, $id = '', $group = 'header') {
 		if (isset($data) && is_array($data) && isset($data['tag'])) {
 			$tag = array(
-				'name'     => $data['tag'],
+				'tag'     => $data['tag'],
 				'content' => isset($data['content']) ? $data['content'] : '',
-				'attrs'   => isset($data['attrs']) && is_array($data['attrs']) ? $data['attrs'] : array()
+				'attrs'   => isset($data['attrs']) && is_array($data['attrs']) ? $data['attrs'] : array(),
+				'close'   => isset($data['close']) ? $data['close'] : true,
 			);
 
 			$this->tags[$group][] = array(

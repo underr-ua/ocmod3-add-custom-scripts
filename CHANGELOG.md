@@ -1,5 +1,9 @@
 # Change log
 
+## [2.1.0] - 2021.03.05:
+### Added
+- Ability to add unclosed tags such '<link />', '<meta />', etc.
+
 ## [2.0.0] - 2021.03.05:
 ### Added
 - Ability to add any tag with content and attributes

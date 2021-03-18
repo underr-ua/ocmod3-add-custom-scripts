@@ -7,9 +7,10 @@ The «Document addTag» extension is for OpenCart 3 CMS. It is a helper tool tha
 * $tag is an array with tag data - tag name, content and attributes or properties, for example:
 ```
 array(
-    'name'    => 'a',
+    'tag'     => 'a',
     'content' => 'Click!',
     'attrs'   => array('href' => 'https://example.com')
+    'close'   => true
 ```
 * $id is an unique id to identify this entry.
 * $group is a group where the tag will be placed (e.g, 'header' or 'footer')
@@ -30,9 +31,18 @@ if ($this->document->getTags('header')) {
             }
 
             $tags .= ' ' . $attrs;
-            $tags .= '>';
+
+            if (isset($tag['tag']['close']) && $tag['tag']['close']) {
+                $tags .= '>';
+            } else {
+                $tags .= ' />';
+            }
+
             $tags .= $tag['tag']['content'];
-            $tags .= '</' . $tag['tag']['name'] . '>';
+
+            if (isset($tag['tag']['close']) && $tag['tag']['close']) {
+                $tags .= '</' . $tag['tag']['name'] . '>';
+            }
         }
     }
 }
