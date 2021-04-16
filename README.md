@@ -1,6 +1,6 @@
 # Document addTag
 
-## Short description
+## Description
 The «Document addTag» extension is for OpenCart 3 CMS. It is a helper tool that extends standard OpenCart class "Document" by adding two methods - addTag and getTags to allow store and embed any html tags with custom attributes and content.
 
 1. To add a tag use `$this->document->addTag($tag, $id, $group)`, where:
