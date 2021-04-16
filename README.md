@@ -12,7 +12,7 @@ The «Document addTag» extension is for OpenCart 3 CMS. It is a helper tool tha
 * $id is an unique id to identify this entry.
 * $group is a group where the tag will be placed (e.g, 'header' or 'footer')
 
-Example below will allows to store javascript script
+Example below allows to store javascript script
 ```
 $content = '
 var button_checkout = "Checkout";
