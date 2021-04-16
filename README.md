@@ -31,7 +31,7 @@ $this->document->addTag($tag, $id, $group)
 ```
 
 
-2.To get tags use something like the next:
+2. To get tags use something like the next:
 ```
 $tags = ''.
 
