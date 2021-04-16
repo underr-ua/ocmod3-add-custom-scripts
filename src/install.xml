@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 
 <!--
-This file is part of "Add Tags" project and subject to the terms
-and conditions defined in file "LICENSE.txt", which is part of this source
-code package and also available by the next link: https://git.io/JqJxU.
+This file is subject to the terms and conditions defined in the "LICENSE.txt"
+file, which is part of this source code package and is also available on the
+page: https://raw.githubusercontent.com/ocmod-space/license/main/LICENSE.txt.
 -->
 
 <modification>
@@ -11,8 +11,8 @@ code package and also available by the next link: https://git.io/JqJxU.
     <code>document-addtag</code>
     <version>2.1.0</version>
     <author>Andrii Burkatskyi aka underr</author>
-    <link>https://git.io/JqJxJ</link>
-	<description>Addon to add custom tags in page header</description>
+    <link>https://www.opencart.com/index.php?route=marketplace/extension&amp;filter_member=ocmod.space</link>
+	<description>Insert any custom tag in page header</description>
 
     <file path="system/library/document.php" error="log">
         <operation error="log">
@@ -24,14 +24,14 @@ code package and also available by the next link: https://git.io/JqJxU.
 	private $tags = array();
 
 	/**
-	 * Store html tag content and attributes
+	 * Save any html tag with content and attributes
 	 *
 	 * Example of $data:
 	 * array(
-	 *     'tag'     => 'a',  // tag name
+	 *     'name'    => 'a',  // tag name
 	 *     'content' => 'Click!', // content
 	 *     'attrs'   => array('href' => 'https://example.com'), // array of tag attributes
-	 *     'close'   => true // close the tag <a></a> or not <link/>
+	 *     'closing' => true // close the tag <a></a> or not <link/>
 	 * )
 	 *
 	 * @param array $data - tag data array
@@ -39,12 +39,12 @@ code package and also available by the next link: https://git.io/JqJxU.
 	 * @param string $group - e.g, 'header' or 'footer'
 	 */
 	public function addTag($data, $id = '', $group = 'header') {
-		if (isset($data) && is_array($data) && isset($data['tag'])) {
+		if (isset($data) && is_array($data) && isset($data['name'])) {
 			$tag = array(
-				'tag'     => $data['tag'],
+				'name'    => $data['name'],
 				'content' => isset($data['content']) ? $data['content'] : '',
 				'attrs'   => isset($data['attrs']) && is_array($data['attrs']) ? $data['attrs'] : array(),
-				'close'   => isset($data['close']) ? $data['close'] : true,
+				'closing' => isset($data['closing']) ? $data['closing'] : true,
 			);
 
 			$this->tags[$group][] = array(

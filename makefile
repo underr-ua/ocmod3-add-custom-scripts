@@ -5,7 +5,7 @@ src_dir=src
 zip_dir=zip
 pwd_file=hideg.pwd
 ocm_file=$(mod_name).ocmod.zip
-ymd=202001010000.00
+ymd=202101010000.00
 
 
 # ckeck module license type

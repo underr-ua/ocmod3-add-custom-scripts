@@ -4,16 +4,32 @@
 The «Document addTag» extension is for OpenCart 3 CMS. It is a helper tool that extends standard OpenCart class "Document" by adding two methods - addTag and getTags to allow store and embed any html tags with custom attributes and content.
 
 1. To add a tag use `$this->document->addTag($tag, $id, $group)`, where:
-* $tag is an array with tag data - tag name, content and attributes or properties, for example:
-```
-array(
-    'tag'     => 'a',
-    'content' => 'Click!',
-    'attrs'   => array('href' => 'https://example.com')
-    'close'   => true
-```
+* $tag is an array with tag data, where:
+ - 'name' (string): tag name, e.g, 'script', 'meta', 'link', etc.;
+ - 'content' (string) - any data;
+ - 'attributes' (array) - tag attributes or properties, e.g. array('type' => 'text/javascript);
+ - 'closing' (bool) - a special flag to make closing tags, e.g., <link/>, <meta/>, or open tags, e.g., <script></script>.
 * $id is an unique id to identify this entry.
 * $group is a group where the tag will be placed (e.g, 'header' or 'footer')
+
+Example below will allows to store javascript script
+```
+$content = '
+var button_checkout = "Checkout";
+var link_checkout = "https://www.example.com/index.php?route=checkout/checkout";
+';
+$tag = array(
+    'name'    => 'script',
+    'content' => $content,
+    'attrs'   => array('type' => 'text/javascript'),
+    'closing' => true
+);
+$id = 'unique_id';
+$group = 'header';
+
+$this->document->addTag($tag, $id, $group)
+```
+
 
 2.To get tags use something like the next:
 ```
@@ -32,7 +48,7 @@ if ($this->document->getTags('header')) {
 
             $tags .= ' ' . $attrs;
 
-            if (isset($tag['tag']['close']) && $tag['tag']['close']) {
+            if (isset($tag['tag']['closing']) && $tag['tag']['closing']) {
                 $tags .= '>';
             } else {
                 $tags .= ' />';
@@ -40,7 +56,7 @@ if ($this->document->getTags('header')) {
 
             $tags .= $tag['tag']['content'];
 
-            if (isset($tag['tag']['close']) && $tag['tag']['close']) {
+            if (isset($tag['tag']['closing']) && $tag['tag']['closing']) {
                 $tags .= '</' . $tag['tag']['name'] . '>';
             }
         }
@@ -49,5 +65,5 @@ if ($this->document->getTags('header')) {
 ```
 
 ## License
-Licensed under the [MIT License](https://git.io/JqJxe)
+Licensed under the [MIT License](https://raw.githubusercontent.com/ocmod-space/license/main/LICENSE.txt)
 

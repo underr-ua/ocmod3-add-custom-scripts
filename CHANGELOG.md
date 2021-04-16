@@ -1,5 +1,13 @@
 # Change log
 
+## [2.2.0] - 2021.04.15:
+### Changed
+- Renamed tag key property 'close' to 'closing'.
+
+## [2.1.0] - 2021.03.05:
+### Added
+- Ability to add unclosed tags such '<link />', '<meta />', etc.
+
 ## [2.1.0] - 2021.03.05:
 ### Added
 - Ability to add unclosed tags such '<link />', '<meta />', etc.
