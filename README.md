@@ -33,7 +33,7 @@ $this->document->addTag($tag, $id, $group)
 
 2. To get tags use something like the next:
 ```
-$tags = ''.
+$tags = '';
 
 if ($this->document->getTags('header')) {
     foreach ($this->document->getTags('header') as $tag) {
